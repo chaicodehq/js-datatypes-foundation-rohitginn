@@ -13,7 +13,7 @@
  *   1. parcelToJSON(parcel)
  *      - JSON.stringify() se parcel object ko JSON string mein convert karo
  *      - try-catch use karo (circular references ke liye)
- *      - Agar parcel undefined hai ya error aaye, return ""
+ *      - Agar parcel undefined hai  ya error aaye, return ""
  *      - Example: parcelToJSON({id:"P001", weight:2.5})
  *                 => '{"id":"P001","weight":2.5}'
  *
@@ -52,21 +52,37 @@
  *   stringToChars("Dak")                  // => ["D", "a", "k"]
  */
 export function parcelToJSON(parcel) {
-  // Your code here
+  // Your code here 
+  try {
+    if (typeof parcel === 'undefined') return "";
+    return JSON.stringify(parcel);
+  } catch (error) {
+    return "";
+  }
 }
 
 export function jsonToParcel(jsonString) {
   // Your code here
+  try {
+    if (typeof jsonString !== 'string') return null;
+    return JSON.parse(jsonString);
+  } catch (error) {
+    return null;
+  }
 }
 
 export function convertToString(value) {
   // Your code here
+  return String(value);
 }
 
 export function convertToNumber(value) {
   // Your code here
+  return Number(value);
 }
 
 export function stringToChars(str) {
   // Your code here
+  if (typeof str !== 'string' || str === null || str === undefined) return [];
+  return Array.from(str);
 }
